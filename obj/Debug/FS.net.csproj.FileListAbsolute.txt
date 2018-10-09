@@ -1,0 +1,17 @@
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\FS.net.exe.config
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\FS.net.exe
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\FS.net.pdb
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\Dapper.dll
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\FS.DAL.dll
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\FS.FileBackup.dll
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\FS.DAL.pdb
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\FS.FileBackup.pdb
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\Dapper.xml
+E:\willDeleteProject\FS.net\FS.net\obj\Debug\FS.net.csprojResolveAssemblyReference.cache
+E:\willDeleteProject\FS.net\FS.net\obj\Debug\FS.net.exe
+E:\willDeleteProject\FS.net\FS.net\obj\Debug\FS.net.pdb
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\FS.Framework.dll
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\Newtonsoft.Json.dll
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\FS.Framework.pdb
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\RabbitMQ.Client.dll
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\RabbitMQ.Client.xml
