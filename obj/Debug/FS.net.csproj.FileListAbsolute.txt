@@ -7,7 +7,6 @@ E:\willDeleteProject\FS.net\FS.net\bin\Debug\FS.FileBackup.dll
 E:\willDeleteProject\FS.net\FS.net\bin\Debug\FS.DAL.pdb
 E:\willDeleteProject\FS.net\FS.net\bin\Debug\FS.FileBackup.pdb
 E:\willDeleteProject\FS.net\FS.net\bin\Debug\Dapper.xml
-E:\willDeleteProject\FS.net\FS.net\obj\Debug\FS.net.csprojResolveAssemblyReference.cache
 E:\willDeleteProject\FS.net\FS.net\obj\Debug\FS.net.exe
 E:\willDeleteProject\FS.net\FS.net\obj\Debug\FS.net.pdb
 E:\willDeleteProject\FS.net\FS.net\bin\Debug\FS.Framework.dll
@@ -15,3 +14,14 @@ E:\willDeleteProject\FS.net\FS.net\bin\Debug\Newtonsoft.Json.dll
 E:\willDeleteProject\FS.net\FS.net\bin\Debug\FS.Framework.pdb
 E:\willDeleteProject\FS.net\FS.net\bin\Debug\RabbitMQ.Client.dll
 E:\willDeleteProject\FS.net\FS.net\bin\Debug\RabbitMQ.Client.xml
+E:\willDeleteProject\FS.net\FS.net\obj\Debug\FS.net.csprojAssemblyReference.cache
+E:\willDeleteProject\FS.net\FS.net\obj\Debug\FS.net.csproj.CoreCompileInputs.cache
+E:\willDeleteProject\FS.net\FS.net\obj\Debug\FS.net.csproj.CopyComplete
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\System.Web.Http.dll
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\System.Net.Http.Formatting.dll
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\System.Web.Http.xml
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\System.Net.Http.Formatting.xml
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\zh-Hans\System.Web.Http.resources.dll
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\zh-Hans\System.Net.Http.Formatting.resources.dll
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\Renci.SshNet.dll
+E:\willDeleteProject\FS.net\FS.net\bin\Debug\Renci.SshNet.xml
