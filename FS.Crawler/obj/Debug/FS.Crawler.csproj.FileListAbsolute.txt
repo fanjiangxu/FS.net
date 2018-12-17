@@ -1,0 +1,5 @@
+E:\willDeleteProject\FS.net\FS.Crawler\bin\Debug\Wesley.Crawler.SimpleCrawler.exe.config
+E:\willDeleteProject\FS.net\FS.Crawler\bin\Debug\Wesley.Crawler.SimpleCrawler.exe
+E:\willDeleteProject\FS.net\FS.Crawler\bin\Debug\Wesley.Crawler.SimpleCrawler.pdb
+E:\willDeleteProject\FS.net\FS.Crawler\obj\Debug\Wesley.Crawler.SimpleCrawler.exe
+E:\willDeleteProject\FS.net\FS.Crawler\obj\Debug\Wesley.Crawler.SimpleCrawler.pdb

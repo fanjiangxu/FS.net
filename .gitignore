@@ -3,3 +3,6 @@
 ################################################################################
 
 /FS.CodeBuilder/App.config
+/FS.Crawler/App.config
+*.config
+/.vs/FS.net/v15

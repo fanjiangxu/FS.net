@@ -1,0 +1,13 @@
+E:\willDeleteProject\FS.net\FS.DAL\bin\Debug\FS.DAL.dll
+E:\willDeleteProject\FS.net\FS.DAL\bin\Debug\FS.DAL.pdb
+E:\willDeleteProject\FS.net\FS.DAL\bin\Debug\Dapper.dll
+E:\willDeleteProject\FS.net\FS.DAL\bin\Debug\FS.Framework.dll
+E:\willDeleteProject\FS.net\FS.DAL\bin\Debug\Newtonsoft.Json.dll
+E:\willDeleteProject\FS.net\FS.DAL\obj\Debug\FS.DAL.dll
+E:\willDeleteProject\FS.net\FS.DAL\obj\Debug\FS.DAL.pdb
+E:\willDeleteProject\FS.net\FS.DAL\bin\Debug\FS.Framework.pdb
+E:\willDeleteProject\FS.net\FS.DAL\obj\Debug\FS.DAL.csprojAssemblyReference.cache
+E:\willDeleteProject\FS.net\FS.DAL\obj\Debug\FS.DAL.csproj.CoreCompileInputs.cache
+E:\willDeleteProject\FS.net\FS.DAL\obj\Debug\FS.DAL.csproj.CopyComplete
+E:\willDeleteProject\FS.net\FS.DAL\bin\Debug\Renci.SshNet.dll
+E:\willDeleteProject\FS.net\FS.DAL\bin\Debug\Renci.SshNet.xml

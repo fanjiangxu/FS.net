@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Introduce";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Introduce</h2>
+<input type="hidden" id="matchID" value="@ViewBag.NextMatchID" />
+<script>
+    $(function () {
+        var baseMoney =parseInt($("font")[1].innerText.toString().replace("初始本金：", "&").split('&')[1].replace(/[\r\n]/g, ""));
+        var startDate =$("font")[2].innerText.toString()!=undefined?$("font")[2].innerText.toString().replace("大赛起止时间：", "").split('-')[0].replace(/[\r\n]/g, ""):"";
+        var endDate = $("font")[2].innerText.toString().replace("大赛起止时间：", "").split('-')[1] != undefined ? $("font")[2].innerText.toString().replace("大赛起止时间：", "").split('-')[1].replace(/[\r\n]/g, "") : "";
+        if (baseMoney <= 0) {
+            window.location.href = "https://www.baidu.com/";
+        }
+        //保存到数据库
+        $.ajax({
+            url: "/Stock/Simulate/SaveMatchVliadDay",
+            type: "post",
+            data: { baseMoney: baseMoney, startDate: startDate, endDate: endDate, matchID: parseInt($("#matchID").val())-1 },
+            dataType: "json",
+            success: function (data) {
+            }
+        });
+        setTimeout(
+            function () {
+                window.location.href = "http://en.www.cofool.com/Stock/Simulate/Introduce?matchID=" + $("#matchID").val();
+            }, 4000);
+    });
+</script>

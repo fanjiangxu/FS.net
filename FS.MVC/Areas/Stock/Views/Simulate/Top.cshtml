@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Introduce";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<h2>Introduce</h2>
+<input type="hidden" id="matchID" value="@ViewBag.NextMatchID" />
+<script>
+    $(function () {
+        function p(s) {
+            return s < 10 ? '0' + s : s;
+        }
+        var myDate = new Date();
+        //获取当前年
+        var year = myDate.getFullYear();
+        //获取当前月
+        var month = myDate.getMonth() + 1;
+        //获取当前日
+        var date = myDate.getDate();
+        var h = myDate.getHours();       //获取当前小时数(0-23)
+        var m = myDate.getMinutes();     //获取当前分钟数(0-59)
+        var s = myDate.getSeconds();
+        var now = year + '-' + p(month) + "-" + p(date) + " " + p(h) + ':' + p(m) + ":" + p(s);
+
+        var updateTime = $("label")[0] != undefined && $("label")[0].toString().indexOf("）") > 0 ? $("label")[0].innerText.toString().replace("（更新于", "").replace("）", "") : now;
+        var matchID = parseInt($("#matchID").val())-1;
+        var json = "[";
+        for (var i = 3; i < $(".class_tab tr").length; i++)
+        {
+            if (json != "[") json += ",";
+            var Sort = $($(".class_tab tr")[i]).find("td")[0].innerText.toString();
+            var userName = $($(".class_tab tr")[i]).find("td")[1].innerText.toString().replace(/[\r\n]/g, "");
+            var userUrl="http://www.cofool.com"+$($($(".class_tab tr")[i]).find("td")[1]).find("a").attr("href").replace(/[\r\n]/g, "");
+            var TotalMoney = $($(".class_tab tr")[i]).find("td")[2].innerText.toString().replace("%", "");
+            var TotalProfit = $($(".class_tab tr")[i]).find("td")[3].innerText.toString().replace("%", "");
+            var YesterdayProfit = $($(".class_tab tr")[i]).find("td")[4].innerText.toString().replace("%", "");
+            var WeekProfit = $($(".class_tab tr")[i]).find("td")[5].innerText.toString().replace("%", "");
+            var MonthProfit = $($(".class_tab tr")[i]).find("td")[6].innerText.toString().replace("%", "");
+            var YearProfit = $($(".class_tab tr")[i]).find("td")[7].innerText.toString().replace("%", "");
+            var SuccessRate = $($(".class_tab tr")[i]).find("td")[8].innerText.toString().replace("%", "");
+            var TotalTurnover = $($(".class_tab tr")[i]).find("td")[9].innerText.toString().replace("%", "");
+            var MonthTurnover = $($(".class_tab tr")[i]).find("td")[10].innerText.toString().replace("%", "");
+            var Position = $($(".class_tab tr")[i]).find("td")[11].innerText.toString().replace("%", "");
+            var MaxReturn = $($(".class_tab tr")[i]).find("td")[12].innerText.toString().replace("%", "");
+            var StrDesc = $($(".class_tab tr")[i]).find("td")[13].innerText;
+            var Level = $($(".class_tab tr")[i]).find("td")[14].innerText;
+            json += "{\"Sort\":" + Sort + "";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"UserName\":\"" + userName + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"UserURL\":\"" + userUrl + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"UpdateTime\":\"" + updateTime + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"MatchID\":" + matchID + "";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"TotalMoney\":\"" + TotalMoney + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"TotalProfit\":\"" + TotalProfit + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"YesterdayProfit\":\"" + YesterdayProfit + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"WeekProfit\":\"" + WeekProfit + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"MonthProfit\":\"" + MonthProfit + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"YearProfit\":\"" + YearProfit + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"SuccessRate\":\"" + SuccessRate + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"TotalTurnover\":\"" + TotalTurnover + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"MonthTurnover\":\"" + MonthTurnover + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Position\":\"" + Position + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"MaxReturn\":\"" + MaxReturn + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"StrDesc\":\"" + StrDesc + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Level\":\"" + Level + "\"}";
+            json = json.replace(/[\r\n]/g, "").trim();
+        }
+        json += "]";
+        //if (json == "[]") {
+        //    window.location.href = "https://www.baidu.com/";
+        //}
+        //保存到数据库
+        $.ajax({
+            url: "/Stock/Simulate/SaveTop",
+            type: "post",
+            data: { data: json },
+            dataType: "json",
+            success: function (data) {
+            }
+        });
+        var s = Math.ceil(Math.random() * 6) * 1000;
+        setTimeout(
+            function () {
+                window.location.href = "http://en.www.cofool.com/Stock/Simulate/Top?matchID=" + $("#matchID").val();
+            }, s);
+    });
+</script>
+
+@*update t set t.UserID=ISNULL(REPLACE(REPLACE(REPLACE(UserUrl,'http://www.cofool.com/Home/User/index/uid/',''),'/gid/'+CONVERT(nvarchar,matchID+2)+'.html',''),'/gid/'+CONVERT(nvarchar,matchID)+'.html',''),0) from TB_top t*@

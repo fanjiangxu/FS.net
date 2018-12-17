@@ -1,0 +1,271 @@
+﻿
+@{
+    ViewBag.Title = "Shares";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<h2>Introduce</h2>
+<input type="hidden" id="topID" value="@ViewBag.NextTopID" />
+<input type="hidden" id="userID" value="@ViewBag.UserID" />
+<input type="hidden" id="type" value="@ViewBag.Type" />
+@Html.Raw(ViewBag.Html)
+<script type="text/javascript">
+    $(function () {
+        var type = $("#type").val();
+        if (type == "position") {//当前持有
+            loaddata();
+        }
+        if (type == "entrust") {//当日委托
+            entrust();
+        }
+        if (type == "turnover") {//当日成交
+            turnover();
+        }
+        if (type == "history") {//历史
+            history();
+        }
+        var s = Math.ceil(Math.random() * 16)*1000;
+        setTimeout(
+            function () {
+                window.location.href = "http://en.www.cofool.com/Stock/Simulate/AllShares?topID=" + $("#topID").val();
+            }, s);
+    });
+
+    function history() {
+        var userID = parseInt($("#userID").val());
+        var json = "[";
+        for (var i =1; i < $("tr").length; i++) {
+            if (json != "[") json += ",";
+            var Name = $($("tr")[i]).find("td")[0].innerText.toString().replace(/[\r\n]/g, "");
+            var Code = $($("tr")[i]).find("td")[1].innerText.toString().replace(/[\r\n]/g, "");
+            var Type = $($("tr")[i]).find("td")[2].innerText.replace(/[\r\n]/g, "");
+            var CurrentPrice = $($("tr")[i]).find("td")[3].innerText.toString().replace("%", "");
+            var BasePrice = $($("tr")[i]).find("td")[4].innerText.toString().replace(/[\r\n]/g, "");
+            var Number = $($("tr")[i]).find("td")[5].innerText.toString().replace(/[\r\n]/g, "");
+            var TotalMoney = $($("tr")[i]).find("td")[6].innerText.toString().replace(/[\r\n]/g, "");
+            var CreateDate = $($("tr")[i]).find("td")[7].innerText.toString().replace(/[\r\n]/g, "");
+            var ShowYiZB = $($("tr")[i]).find("td")[8].innerText.toString().replace(/[\r\n]/g, "");
+            var Yingkui = $($("tr")[i]).find("td")[9].innerText.toString().replace(/[\r\n]/g, "").replace("%", "");
+            json += "{\"Name\":\"" + Name + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Code\":\"" + Code + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Type\":\"" + Type + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"CurrentPrice\":" + CurrentPrice + "";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"BasePrice\":\"" + BasePrice + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Number\":\"" + Number + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"TotalMoney\":\"" + TotalMoney + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"CreateDate\":\"" + CreateDate + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"ShowYiZB\":\"" + ShowYiZB + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Yingkui\":\"" + Yingkui + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"UserID\":\"" + userID + "\"}";
+            json = json.replace(/[\r\n]/g, "");
+            json = json.replace(/[\r\n]/g, "").trim();
+        }
+        json += "]";
+        //保存到数据库
+        $.ajax({
+            url: "/Stock/Simulate/SaveHistoryShares",
+            type: "post",
+            data: { data: json },
+            dataType: "json",
+            success: function (data) {
+            }
+        });
+    }
+
+    function turnover() {
+        var userID = parseInt($("#userID").val());
+        var json = "[";
+        for (var i = 1; i < $("tr").length; i++) {
+            if (json != "[") json += ",";
+            var Name = $($("tr")[i]).find("td")[0].innerText.toString().replace(/[\r\n]/g, "");
+            var Code = $($("tr")[i]).find("td")[1].innerText.toString().replace(/[\r\n]/g, "");
+            var Type = $($("tr")[i]).find("td")[2].innerText.replace(/[\r\n]/g, "");
+            var Price = $($("tr")[i]).find("td")[3].innerText.toString().replace("%", "");
+            var Number = $($("tr")[i]).find("td")[4].innerText.toString().replace("%", "");
+            var TotalPrice = $($("tr")[i]).find("td")[5].innerText.toString().replace("%", "");
+            var CreateTime = $($("tr")[i]).find("td")[6].innerText.toString().replace(/[\r\n]/g, "").replace("%", "");
+            json += "{\"Name\":\"" + Name + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Code\":\"" + Code + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Type\":\"" + Type + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Price\":" + Price + "";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Number\":\"" + Number + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"TotalPrice\":" + TotalPrice + "";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"CreateTime\":\"" + CreateTime + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"UserID\":\"" + userID + "\"}";
+            json = json.replace(/[\r\n]/g, "");
+            json = json.replace(/[\r\n]/g, "").trim();
+        }
+        json += "]";
+        //保存到数据库
+        $.ajax({
+            url: "/Stock/Simulate/SaveTurnoverShares",
+            type: "post",
+            data: { data: json },
+            dataType: "json",
+            success: function (data) {
+            }
+        });
+    }
+
+    function entrust() {
+        document.domain = "cofool.com";
+        var userID = parseInt($("#userID").val());
+        var json = "[";
+        //降
+        for (var i = 1; i < $("tr").length; i++) {
+            if (json != "[") json += ",";
+            var Name = $($("tr")[i]).find("td")[0].innerText.toString().replace(/[\r\n]/g, "");
+            var Code = $($("tr")[i]).find("td")[1].innerText.toString().replace(/[\r\n]/g, "");
+            var Type = $($("tr")[i]).find("td")[2].innerText.replace(/[\r\n]/g, "");
+            var Price = $($("tr")[i]).find("td")[3].innerText.toString().replace("%", "");
+            var Number = $($("tr")[i]).find("td")[4].innerText.toString().replace("%", "");
+            var CreateTime = $($("tr")[i]).find("td")[5].innerText.toString().replace(/[\r\n]/g, "").replace("%", "");
+            var State = $($("tr")[i]).find("td")[6].innerText.toString().replace(/[\r\n]/g, "");
+            json += "{\"Name\":\"" + Name + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Code\":\"" + Code + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Type\":\"" + Type + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Price\":" + Price + "";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Number\":\"" + Number + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"CreateTime\":\"" + CreateTime + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"State\":\"" + State + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"UserID\":\"" + userID + "\"}";
+            json = json.replace(/[\r\n]/g, "");
+            json = json.replace(/[\r\n]/g, "").trim();
+        }
+        json += "]";
+        //保存到数据库
+        $.ajax({
+            url: "/Stock/Simulate/SaveEntrustShares",
+            type: "post",
+            data: { data: json },
+            dataType: "json",
+            success: function (data) {
+            }
+        });
+    }
+
+ 
+    function loaddata() {
+            document.domain = "cofool.com";
+            var userID = parseInt($("#userID").val());
+            var json = "[";
+            //降
+            for (var i = 0; i < $(".cgreen").length; i++) {
+                if (json != "[") json += ",";
+                var Name = $($(".cgreen")[i]).find("td")[0].innerText.toString().replace(/[\r\n]/g, "");
+                var Code = $($(".cgreen")[i]).find("td")[1].innerText.toString().replace(/[\r\n]/g, "");
+                var CurrentShare = $($(".cgreen")[i]).find("td")[2].innerText.replace(/[\r\n]/g, "");
+                var CanUseShare = $($(".cgreen")[i]).find("td")[3].innerText.toString().replace("%", "");
+                var CurrentPrice = $($(".cgreen")[i]).find("td")[4].innerText.toString().replace("%", "");
+                var Increase = $($(".cgreen")[i]).find("td")[5].innerText.toString().replace(/[\r\n]/g, "").replace("%", "");
+                var BasePrice = $($(".cgreen")[i]).find("td")[6].innerText.toString().replace(/[\r\n]/g, "");
+                var TotalMoney = $($(".cgreen")[i]).find("td")[7].innerText.toString().replace(/[\r\n]/g, "");
+                var FloatingPL = $($(".cgreen")[i]).find("td")[8].innerText.toString().replace(/[\r\n]/g, "");
+                var PLScale = $($(".cgreen")[i]).find("td")[9].innerText.toString().replace(/[\r\n]/g, "");
+                var ChiCangZB = $($(".cgreen")[i]).find("td")[10].innerText.toString().replace(/[\r\n]/g, "").replace("%", "");
+                json += "{\"Name\":\"" + Name + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"Code\":\"" + Code + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"CurrentShare\":\"" + CurrentShare + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"CanUseShare\":\"" + CanUseShare + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"CurrentPrice\":" + CurrentPrice + "";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"Increase\":\"" + Increase + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"BasePrice\":\"" + BasePrice + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"TotalMoney\":\"" + TotalMoney + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"FloatingPL\":\"" + FloatingPL + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"PLScale\":\"" + PLScale + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"ChiCangZB\":\"" + ChiCangZB + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"UserID\":\"" + userID + "\"}";
+                json = json.replace(/[\r\n]/g, "");
+                json = json.replace(/[\r\n]/g, "").trim();
+            }
+            //升
+            for (var i = 0; i < $(".cred").length; i++) {
+                if (json != "[") json += ",";
+                var Name = $($(".cred")[i]).find("td")[0].innerText.toString().replace(/[\r\n]/g, "");
+                var Code = $($(".cred")[i]).find("td")[1].innerText.toString().replace(/[\r\n]/g, "");
+                var CurrentShare = $($(".cred")[i]).find("td")[2].innerText.replace(/[\r\n]/g, "");
+                var CanUseShare = $($(".cred")[i]).find("td")[3].innerText.toString().replace("%", "");
+                var CurrentPrice = $($(".cred")[i]).find("td")[4].innerText.toString().replace("%", "");
+                var Increase = $($(".cred")[i]).find("td")[5].innerText.toString().replace(/[\r\n]/g, "").replace("%", "");
+                var BasePrice = $($(".cred")[i]).find("td")[6].innerText.toString().replace(/[\r\n]/g, "");
+                var TotalMoney = $($(".cred")[i]).find("td")[7].innerText.toString().replace(/[\r\n]/g, "");
+                var FloatingPL = $($(".cred")[i]).find("td")[8].innerText.toString().replace(/[\r\n]/g, "");
+                var PLScale = $($(".cred")[i]).find("td")[9].innerText.toString().replace(/[\r\n]/g, "");
+                var ChiCangZB = $($(".cred")[i]).find("td")[10].innerText.toString().replace(/[\r\n]/g, "").replace("%", "");
+                json += "{\"Name\":\"" + Name + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"Code\":\"" + Code + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"CurrentShare\":\"" + CurrentShare + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"CanUseShare\":\"" + CanUseShare + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"CurrentPrice\":" + CurrentPrice + "";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"Increase\":\"" + Increase + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"BasePrice\":\"" + BasePrice + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"TotalMoney\":\"" + TotalMoney + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"FloatingPL\":\"" + FloatingPL + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"PLScale\":\"" + PLScale + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"ChiCangZB\":\"" + ChiCangZB + "\"";
+                json = json.replace(/[\r\n]/g, "");
+                json += ",\"UserID\":\"" + userID + "\"}";
+                json = json.replace(/[\r\n]/g, "");
+                json = json.replace(/[\r\n]/g, "").trim();
+            }
+            json += "]";
+            //if (json == "[]") {
+            //    window.location.href = "https://www.baidu.com/";
+            //}
+            //保存到数据库
+            $.ajax({
+                url: "/Stock/Simulate/SaveAllShares",
+                type: "post",
+                data: { data: json },
+                dataType: "json",
+                success: function (data) {
+                }
+            });
+        }
+</script>

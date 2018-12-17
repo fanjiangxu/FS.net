@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using FS.Framework;
+namespace FS.DAL.Models
+{
+  public class ShoppingProduct
+  {
+
+    [ColumnDescription("")]
+    public int ID { get; set; }
+
+    [ColumnDescription("")]
+    public int RuleID { get; set; }
+
+    [ColumnDescription("")]
+    public int SiteID { get; set; }
+
+    [ColumnDescription("")]
+    public int ProductID { get; set; }
+
+    [ColumnDescription("")]
+    public int Sort { get; set; }
+
+    [ColumnDescription("")]
+    public int State { get; set; }
+
+    [ColumnDescription("")]
+    public decimal Original { get; set; }
+
+    [ColumnDescription("")]
+    public decimal Price { get; set; }
+
+    [ColumnDescription("")]
+    public decimal ShoppingPrice { get; set; }
+
+    [ColumnDescription("")]
+    public string Image { get; set; }
+
+    [ColumnDescription("")]
+    public string Required { get; set; }
+  }
+}

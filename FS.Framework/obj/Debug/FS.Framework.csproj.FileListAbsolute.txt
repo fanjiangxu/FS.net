@@ -1,0 +1,9 @@
+E:\willDeleteProject\FS.net\FS.Framework\bin\Debug\FS.Framework.dll
+E:\willDeleteProject\FS.net\FS.Framework\bin\Debug\FS.Framework.pdb
+E:\willDeleteProject\FS.net\FS.Framework\bin\Debug\Newtonsoft.Json.dll
+E:\willDeleteProject\FS.net\FS.Framework\obj\Debug\FS.Framework.dll
+E:\willDeleteProject\FS.net\FS.Framework\obj\Debug\FS.Framework.pdb
+E:\willDeleteProject\FS.net\FS.Framework\obj\Debug\FS.Framework.csproj.CoreCompileInputs.cache
+E:\willDeleteProject\FS.net\FS.Framework\obj\Debug\FS.Framework.csproj.CopyComplete
+E:\willDeleteProject\FS.net\FS.Framework\bin\Debug\Renci.SshNet.dll
+E:\willDeleteProject\FS.net\FS.Framework\bin\Debug\Renci.SshNet.xml

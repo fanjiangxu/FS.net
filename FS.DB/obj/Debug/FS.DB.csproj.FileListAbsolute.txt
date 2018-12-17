@@ -1,0 +1,5 @@
+E:\willDeleteProject\FS.net\FS.DB\bin\Debug\FS.DB.dll
+E:\willDeleteProject\FS.net\FS.DB\bin\Debug\FS.DB.pdb
+E:\willDeleteProject\FS.net\FS.DB\obj\Debug\FS.DB.dll
+E:\willDeleteProject\FS.net\FS.DB\obj\Debug\FS.DB.pdb
+E:\willDeleteProject\FS.net\FS.DB\obj\Debug\FS.DB.csprojResolveAssemblyReference.cache

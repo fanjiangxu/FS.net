@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "UserMatchInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<h2>UserMatchInfo</h2>
+<input type="hidden" id="NextID" value="@ViewBag.NextID" />
+<script>
+    $(function () {
+        try
+        {
+            var a = u;
+        }
+        catch(e)
+        {
+            window.location.href = "http://en.www.cofool.com/Stock/Simulate/UserMatchInfo?ID=" + $("#NextID").val();
+        }
+     
+        var json = "[";
+        var Type = "position";
+        var Gid =u.gid;
+        var Uid = u.uid;
+        var Web_id =u.web_id;
+        var Archive = u.archive;
+        var All_balance = u.all_balance;
+        for (var i = 0; i <= 3; i++)
+        {
+            switch (i)
+            {
+                case 0:
+                    Type = "position";
+                    break;
+                case 1:
+                    Type = "entrust";
+                    break;
+                case 2:
+                    Type = "turnover";
+                    break;
+                case 3:
+                    Type = "history";
+                    break;
+            }
+            if (i > 0) json += ",";
+            json += "{\"Type\":\"" + Type + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Gid\":\"" + Gid + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Uid\":\"" + Uid + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Web_id\":\"" + Web_id + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Archive\":\"" + Archive + "\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"Html\":\"\"";
+            json = json.replace(/[\r\n]/g, "");
+            json += ",\"All_balance\":\"" + All_balance + "\"}";
+            json = json.replace(/[\r\n]/g, "").trim();
+        }
+    
+        json += "]";
+        //保存到数据库
+        $.ajax({
+            url: "/Stock/Simulate/SaveUserMatchInfo",
+            type: "post",
+            data: { data: json },
+            dataType: "json",
+            success: function (data) {
+            }
+        });
+        var s = Math.ceil(Math.random() * 10) * 1000;
+        setTimeout(
+            function () {
+              window.location.href = "http://en.www.cofool.com/Stock/Simulate/UserMatchInfo?ID=" + $("#NextID").val();
+            }, s);
+    });
+</script>
+
+
