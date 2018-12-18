@@ -14,11 +14,12 @@ namespace FS.Common.Filter
 
         public Log4NetExceptionFilter()
         {
-            _logger = LogSingleton.GetInstance().log;
+            _logger = LogSingleton.GetInstance().logError;
         }
         public void OnException(ExceptionContext context)
         {
             _logger.Error("Unhandled exception", context.Exception);
+            context.HttpContext.Response.Redirect("~/error.html");
         }
     }
 }

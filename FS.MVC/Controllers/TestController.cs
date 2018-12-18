@@ -32,5 +32,10 @@ namespace FS.MVC.Controllers
             };
             return XmlView(user);
         }
+
+        public ActionResult Test()
+        {
+            return View();
+        }
     }
 }

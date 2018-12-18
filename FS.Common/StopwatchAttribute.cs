@@ -12,7 +12,7 @@ namespace FS.Common
     public class StopwatchAttribute: ActionFilterAttribute
     {
         private const string StopwatchKey = "StopwatchFilter.Value";
-        private readonly ILog  _logger = LogSingleton.GetInstance().log;
+        private readonly ILog _logger = LogSingleton.GetInstance().log;
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

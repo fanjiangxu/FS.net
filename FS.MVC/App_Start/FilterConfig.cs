@@ -8,8 +8,8 @@ namespace FS.MVC
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
             filters.Add(new Log4NetExceptionFilter());
+            filters.Add(new HandleErrorAttribute());
         }
     }
 }

@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseController.cs" />
+    <Compile Include="HtmlHelperExtensions.cs" />
     <Compile Include="LogSingleton.cs" />
     <Compile Include="Filter\Log4NetExceptionFilter.cs" />
     <Compile Include="StopwatchAttribute.cs" />
