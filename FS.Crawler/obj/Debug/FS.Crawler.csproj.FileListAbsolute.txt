@@ -3,3 +3,9 @@ E:\willDeleteProject\FS.net\FS.Crawler\bin\Debug\Wesley.Crawler.SimpleCrawler.ex
 E:\willDeleteProject\FS.net\FS.Crawler\bin\Debug\Wesley.Crawler.SimpleCrawler.pdb
 E:\willDeleteProject\FS.net\FS.Crawler\obj\Debug\Wesley.Crawler.SimpleCrawler.exe
 E:\willDeleteProject\FS.net\FS.Crawler\obj\Debug\Wesley.Crawler.SimpleCrawler.pdb
+E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\Wesley.Crawler.SimpleCrawler.exe.config
+E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\Wesley.Crawler.SimpleCrawler.exe
+E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\Wesley.Crawler.SimpleCrawler.pdb
+E:\FS\FS.net\FS.net\FS.Crawler\obj\Debug\FS.Crawler.csproj.CoreCompileInputs.cache
+E:\FS\FS.net\FS.net\FS.Crawler\obj\Debug\Wesley.Crawler.SimpleCrawler.exe
+E:\FS\FS.net\FS.net\FS.Crawler\obj\Debug\Wesley.Crawler.SimpleCrawler.pdb

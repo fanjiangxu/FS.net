@@ -4,3 +4,8 @@ E:\willDeleteProject\FS.net\FS.FileBackup\obj\Debug\FS.FileBackup.dll
 E:\willDeleteProject\FS.net\FS.FileBackup\obj\Debug\FS.FileBackup.pdb
 E:\willDeleteProject\FS.net\FS.FileBackup\obj\Debug\FS.FileBackup.csprojAssemblyReference.cache
 E:\willDeleteProject\FS.net\FS.FileBackup\obj\Debug\FS.FileBackup.csproj.CoreCompileInputs.cache
+E:\FS\FS.net\FS.net\FS.FileBackup\bin\Debug\FS.FileBackup.dll
+E:\FS\FS.net\FS.net\FS.FileBackup\bin\Debug\FS.FileBackup.pdb
+E:\FS\FS.net\FS.net\FS.FileBackup\obj\Debug\FS.FileBackup.csproj.CoreCompileInputs.cache
+E:\FS\FS.net\FS.net\FS.FileBackup\obj\Debug\FS.FileBackup.dll
+E:\FS\FS.net\FS.net\FS.FileBackup\obj\Debug\FS.FileBackup.pdb

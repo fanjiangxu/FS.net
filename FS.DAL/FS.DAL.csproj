@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>dll\Dapper.dll</HintPath>
-    </Reference>
     <Reference Include="FS.Framework">
       <HintPath>..\FS.Framework\bin\Debug\FS.Framework.dll</HintPath>
     </Reference>
@@ -49,22 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helper\ConfigHelper.cs" />
-    <Compile Include="Helper\MeituanHelper.cs" />
-    <Compile Include="Helper\ElemaHelper.cs" />
-    <Compile Include="Helper\MatchHelper.cs" />
-    <Compile Include="Helper\CurrentSharesHelper.cs" />
-    <Compile Include="Helper\UserMatchInfoHelper.cs" />
-    <Compile Include="Helper\TopHelper.cs" />
-    <Compile Include="Helper\MobileHelper.cs" />
-    <Compile Include="Model\EnumType.cs" />
-    <Compile Include="Model\Meituan.cs" />
-    <Compile Include="Model\Elema.cs" />
-    <Compile Include="Model\Match.cs" />
-    <Compile Include="Model\CurrentShares.cs" />
-    <Compile Include="Model\UserMatchInfo.cs" />
-    <Compile Include="Model\Top.cs" />
-    <Compile Include="Model\Mobile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

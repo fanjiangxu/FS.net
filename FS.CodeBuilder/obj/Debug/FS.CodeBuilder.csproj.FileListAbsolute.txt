@@ -7,3 +7,4 @@ E:\willDeleteProject\FS.net\FS.CodeBuilder\bin\Debug\Newtonsoft.Json.dll
 E:\willDeleteProject\FS.net\FS.CodeBuilder\bin\Debug\FS.Framework.pdb
 E:\willDeleteProject\FS.net\FS.CodeBuilder\obj\Debug\FS.CodeBuilder.exe
 E:\willDeleteProject\FS.net\FS.CodeBuilder\obj\Debug\FS.CodeBuilder.pdb
+E:\FS\FS.net\FS.net\FS.CodeBuilder\obj\Debug\FS.CodeBuilder.csproj.CoreCompileInputs.cache

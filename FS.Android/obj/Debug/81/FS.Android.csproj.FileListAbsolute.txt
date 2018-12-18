@@ -64,3 +64,9 @@ E:\willDeleteProject\FS.net\FS.Android\obj\Debug\81\android\assets\System.pdb
 E:\willDeleteProject\FS.net\FS.Android\obj\Debug\81\android\assets\System.Runtime.Serialization.pdb
 E:\willDeleteProject\FS.net\FS.Android\obj\Debug\81\android\assets\System.ServiceModel.Internals.pdb
 E:\willDeleteProject\FS.net\FS.Android\obj\Debug\81\android\assets\System.Xml.pdb
+E:\FS\FS.net\FS.net\FS.Android\obj\Debug\81\MonoAndroid,Version=v8.1.AssemblyAttributes.cs
+E:\FS\FS.net\FS.net\FS.Android\obj\Debug\81\FS.Android.csprojAssemblyReference.cache
+E:\FS\FS.net\FS.net\FS.Android\obj\Debug\81\libraryimports.cache.stamp
+E:\FS\FS.net\FS.net\FS.Android\obj\Debug\81\res.flag
+E:\FS\FS.net\FS.net\FS.Android\obj\Debug\81\FS.Android.dll
+E:\FS\FS.net\FS.net\FS.Android\obj\Debug\81\FS.Android.pdb
