@@ -16,8 +16,6 @@ namespace FS.MVC.Controllers
         // GET: Test
         public ActionResult Index()
         {
-            ILog logs = LogManager.GetLogger("TEST");
-            logs.Info("test");
             return View();
         }
 
@@ -32,17 +30,7 @@ namespace FS.MVC.Controllers
                 Phone = "139********",
                 Address = "my address"
             };
-            try
-            {
-                _logger.Info("start写日志");
-                _logger.Info("end写日志");
-                return XmlView(user);
-
-            }
-            catch(Exception ex)
-            {
-                return XmlView(user);
-            }
+            return XmlView(user);
         }
     }
 }

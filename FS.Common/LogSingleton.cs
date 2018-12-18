@@ -16,13 +16,15 @@ namespace FS.Common
         private static LogSingleton _log;
         //定义一个标识确保线程同步
         private static readonly object locker = new object();
-        public readonly ILog _logger;
+        public readonly ILog log;
+        public readonly ILog logError;
         /// <summary>
         /// 定义私有构造函数，使外界不能创建该类实例
         /// </summary>
         private LogSingleton()
         {
-            _logger = LogManager.GetLogger("loginfo");
+            log = LogManager.GetLogger("loginfo");
+            logError = LogManager.GetLogger("logerror");
         }
         //定义公有方法提供一个全局访问点。
         public static LogSingleton GetInstance()

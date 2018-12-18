@@ -14,7 +14,7 @@ namespace FS.Common.Filter
 
         public Log4NetExceptionFilter()
         {
-            _logger = LogSingleton.GetInstance()._logger;
+            _logger = LogSingleton.GetInstance().log;
         }
         public void OnException(ExceptionContext context)
         {

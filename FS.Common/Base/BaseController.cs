@@ -10,7 +10,8 @@ namespace FS.Common.Base
 {
     public class BaseController:Controller
     {
-        protected readonly ILog _logger =LogSingleton.GetInstance()._logger;
+        protected readonly ILog log= LogSingleton.GetInstance().log;
+        protected readonly ILog logError = LogSingleton.GetInstance().logError;
         protected XmlResult XmlView(object data)
         {
             return new XmlResult(data);

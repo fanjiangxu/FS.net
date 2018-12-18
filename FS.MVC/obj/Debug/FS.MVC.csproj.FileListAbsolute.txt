@@ -14,7 +14,6 @@ E:\FS\FS.net\FS.net\FS.MVC\bin\roslyn\System.Reflection.Metadata.dll
 E:\FS\FS.net\FS.net\FS.MVC\bin\roslyn\vbc.exe
 E:\FS\FS.net\FS.net\FS.MVC\bin\roslyn\VBCSCompiler.exe
 E:\FS\FS.net\FS.net\FS.MVC\bin\roslyn\VBCSCompiler.exe.config
-E:\FS\FS.net\FS.net\FS.MVC\bin\log4net.config
 E:\FS\FS.net\FS.net\FS.MVC\bin\FS.MVC.dll.config
 E:\FS\FS.net\FS.net\FS.MVC\bin\FS.MVC.dll
 E:\FS\FS.net\FS.net\FS.MVC\bin\FS.MVC.pdb
