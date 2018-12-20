@@ -16,7 +16,7 @@ namespace Wesley.Crawler.SimpleCrawler.Models.Football
 
         public string Match_Name { get; set; }
 
-        public string Match_Date { get; set; }
+        public string Match_Date { get; set;}
 
         public string Match_BzM { get; set; }
 

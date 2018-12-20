@@ -77,13 +77,16 @@ namespace FS.Crawler
             };
        
             List<Uri> footballList = new List<Uri>();
-            footballList.Add(new Uri("https://7345v.com/index.php/sports/Match/FootballMorning/?t=" + t));
-            footballList.Add(new Uri("https://7345v.com/index.php/sports/Match/FootballToday/?t=" + t));
+            for(var i=1;i<10;i++)
+            {
+                footballList.Add(new Uri("https://7345v.com/index.php/sports/Match/FootballMorning/?t=" + t + "&p=" + i));
+                footballList.Add(new Uri("https://7345v.com/index.php/sports/Match/FootballToday/?t=" + t + "&p=" + i));
+            }
             footballList.Add(new Uri("https://7345v.com/index.php/sports/Match/FBRresults/?t=" + t));
             Parallel.For(0, footballList.Count, (i) =>
             {
                 var football = footballList[i];
-                footballMorningCrawler.Start(football);
+                footballMorningCrawler.Start(football);   //get请求
             });
         }
     }
