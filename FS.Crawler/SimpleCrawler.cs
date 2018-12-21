@@ -149,7 +149,7 @@ namespace FS.Crawler
         /// <returns></returns>
         public static string PostResponse(string url, string postString,string proxy=null)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("POST请求的地址");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.CookieContainer = new CookieContainer();
             CookieContainer cookie = request.CookieContainer;//如果用不到Cookie，删去即可  
             request.Accept = "Accept:text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
