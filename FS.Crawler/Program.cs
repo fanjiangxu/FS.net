@@ -20,6 +20,7 @@ using log4net;
 using FS.Crawler.Models.Football;
 using Dapper;
 using System.Configuration;
+using System.Threading;
 
 namespace FS.Crawler
 {
@@ -30,6 +31,9 @@ namespace FS.Crawler
         static void Main(string[] args)
         {
             FootballMorningCrawler();
+            Thread.Sleep(600000);
+            Console.WriteLine("执行完成！");
+            return;
         }
 
         /// <summary>
@@ -108,7 +112,7 @@ namespace FS.Crawler
             using (IDbConnection connection = new SqlConnection(connString))
             {
                 var sql = @"
-truncate  table FBRresults_ClearData
+truncate  table FBRresults_ClearData;
 insert into FBRresults_ClearData
 select 
 [Match_Name]
@@ -127,9 +131,9 @@ select
       ,[MB_Inball_HR]
       ,[MB_Inball]
       ,[TG_Inball_HR]
-      ,[TG_Inball]
+      ,[TG_Inball];
 ----------------------------------------------------------------------------------------------   
-truncate  table FootballMorning_ClearData
+truncate  table FootballMorning_ClearData;
 insert into FootballMorning_ClearData
 SELECT [Match_ID]
       ,[Match_Master]
@@ -190,9 +194,9 @@ SELECT [Match_ID]
       ,[Match_BRpk]
       ,[Match_Bdxpk1]
       ,[Match_Hr_ShowType]
-      ,[Match_Bdxpk2]
+      ,[Match_Bdxpk2];
 ----------------------------------------------------------------------------------------------     
-truncate table FootballToday_ClearData
+truncate table FootballToday_ClearData;
 insert into FootballToday_ClearData
 SELECT [Match_ID]
       ,[SMM]
@@ -255,8 +259,12 @@ SELECT [Match_ID]
       ,[Match_BRpk]
       ,[Match_Bdxpk1]
       ,[Match_Hr_ShowType]
-      ,[Match_Bdxpk2]  
+      ,[Match_Bdxpk2]  ;
 ----------------------------------------------------------------------------------------------   
+
+--刷Match_ID
+update r set r.Match_ID=m.Match_ID from dbo.FBRresults_ClearData r
+left join FootballMorning_ClearData m on r.Match_Master=m.Match_Master and r.Match_Guest=m.Match_Guest and m.Match_Name=r.Match_Name and m.Match_Date like '%'+r.Match_MatchTime+'%';
                ";
                 try
                 {
