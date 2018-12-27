@@ -3,14 +3,15 @@ E:\willDeleteProject\FS.net\FS.Crawler\bin\Debug\Wesley.Crawler.SimpleCrawler.ex
 E:\willDeleteProject\FS.net\FS.Crawler\bin\Debug\Wesley.Crawler.SimpleCrawler.pdb
 E:\willDeleteProject\FS.net\FS.Crawler\obj\Debug\Wesley.Crawler.SimpleCrawler.exe
 E:\willDeleteProject\FS.net\FS.Crawler\obj\Debug\Wesley.Crawler.SimpleCrawler.pdb
-E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\FS.Crawler.exe
-E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\Dapper.dll
-E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\log4net.dll
 E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\log4net.config
 E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\FS.Crawler.exe.config
+E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\FS.Crawler.exe
+E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\FS.Crawler.pdb
 E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\Common.Logging.Core.dll
 E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\Common.Logging.dll
 E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\Common.Logging.Log4Net1211.dll
+E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\Dapper.dll
+E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\log4net.dll
 E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\Quartz.dll
 E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\Topshelf.dll
 E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\Common.Logging.pdb
@@ -28,4 +29,4 @@ E:\FS\FS.net\FS.net\FS.Crawler\obj\Debug\FS.Crawler.csproj.CoreCompileInputs.cac
 E:\FS\FS.net\FS.net\FS.Crawler\obj\Debug\FS.Crawler.csproj.CopyComplete
 E:\FS\FS.net\FS.net\FS.Crawler\obj\Debug\FS.Crawler.exe
 E:\FS\FS.net\FS.net\FS.Crawler\obj\Debug\FS.Crawler.pdb
-E:\FS\FS.net\FS.net\FS.Crawler\bin\Debug\FS.Crawler.pdb
+E:\FS\FS.net\FS.net\FS.Crawler\obj\Debug\FS.Crawler.csprojAssemblyReference.cache

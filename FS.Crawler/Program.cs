@@ -31,13 +31,14 @@ namespace FS.Crawler
         static void Main(string[] args)
         {
             FootballMorningCrawler();
-            Thread.Sleep(600000);
+            Thread.Sleep(60000);
+            ClearData();
             Console.WriteLine("执行完成！");
             return;
         }
 
-        /// <summary>
         /// 抓取早盘数据
+        /// <summary>
         /// </summary>
         public static void FootballMorningCrawler()
         {
@@ -108,7 +109,13 @@ namespace FS.Crawler
                 footballMorningCrawler.StartPost(postUriData.Uri, postUriData.PostString);   //Post请求
             });
 
-            //清洗数据
+        
+        }
+        /// <summary>
+        ///清洗数据
+        /// </summary>
+        public static void ClearData()
+        {
             using (IDbConnection connection = new SqlConnection(connString))
             {
                 var sql = @"
@@ -260,11 +267,64 @@ SELECT [Match_ID]
       ,[Match_Bdxpk1]
       ,[Match_Hr_ShowType]
       ,[Match_Bdxpk2]  ;
-----------------------------------------------------------------------------------------------   
-
---刷Match_ID
+----------------------------------------------------------------------------------------------    刷比赛结果表（FBRresults_ClearData）的Match_ID
+--
 update r set r.Match_ID=m.Match_ID from dbo.FBRresults_ClearData r
-left join FootballMorning_ClearData m on r.Match_Master=m.Match_Master and r.Match_Guest=m.Match_Guest and m.Match_Name=r.Match_Name and m.Match_Date like '%'+r.Match_MatchTime+'%';
+inner join FootballMorning_ClearData m on r.Match_Master=m.Match_Master and r.Match_Guest=m.Match_Guest and m.Match_Name=r.Match_Name and m.Match_Date like '%'+r.Match_MatchTime+'%';
+----------------------------------------------------------------------------------------------   汇总比赛结果
+truncate  table CollectionMaster_Data;
+insert into  CollectionMaster_Data
+select r.Match_Name,r.Match_MatchTime,r.Match_Master,r.Match_Guest,r.MB_Inball '主',r.TG_Inball '客',m.Match_Bmdy,m.Match_Bgdy
+,(case when MB_Inball>TG_Inball then '胜' when MB_Inball=TG_Inball then '平' else '负' end) '类型'
+,10 '支出'
+,(case when MB_Inball>TG_Inball then 10*CONVERT(decimal(18,2),m.Match_Bmdy) else -10 end)   '主场胜'
+,(case when MB_Inball=TG_Inball then 10*CONVERT(decimal(18,2),m.Match_Bhdy) else -10 end)   '主场平'
+,(case when MB_Inball<TG_Inball then 10*CONVERT(decimal(18,2),m.Match_Bgdy) else -10 end)   '主场负'
+,(case when MB_Inball>TG_Inball then Convert(decimal(18,2),CONVERT(decimal(18,2),m.Match_Bmdy)/CONVERT(decimal(18,2),m.Match_Bgdy))
+when MB_Inball<TG_Inball then Convert(decimal(18,2),CONVERT(decimal(18,2),m.Match_Bgdy)/CONVERT(decimal(18,2),m.Match_Bmdy)) 
+else  m.Match_Bhdy end) '赔率比'
+,m.Match_Bhdy
+ from dbo.FBRresults_ClearData r
+ left join FootballMorning_ClearData m on CONVERT(nvarchar(255),r.Match_ID)= CONVERT(nvarchar(255),m.Match_ID)
+ where  CONVERT(nvarchar(255),m.Match_ID)>'0' and m.Match_Bgdy!='0' and r.Match_Master not like '%角球数%' and (r.MB_Inball!='-' and r.TG_Inball!='-')
+ group by r.Match_Name,r.Match_MatchTime,r.Match_Master,r.Match_Guest,r.MB_Inball_HR,r.MB_Inball,r.TG_Inball_HR,r.TG_Inball,m.Match_Bmdy,m.Match_Bgdy,m.Match_Bhdy
+ order by m.Match_Bmdy;
+
+----------------------------------------------------------------------------------------------   汇总比赛结果 
+truncate table MasterOddsWin_1_5
+declare @intMin decimal(18,2),@intMax decimal(18,2);
+set @intMin=1
+set @intmax=6
+while @intMin<=@intMax
+begin
+ insert into MasterOddsWin_1_5
+ select (case when SUM(t.主场胜)-SUM(t.支出)>0 then SUM(t.主场胜)-SUM(t.支出) else -SUM(t.支出) end) '主胜_盈利',(case when SUM(t.主场平)-SUM(t.支出)>0 then SUM(t.主场平)-SUM(t.支出) else -SUM(t.支出) end) '平_盈利',(case when SUM(t.主场负)-SUM(t.支出)>0 then SUM(t.主场负)-SUM(t.支出) else -SUM(t.支出) end) '主负_盈利',SUM(t.支出) '本金','Match_Bgdy '+CONVERT(nvarchar(255),@intMin)+'--'+CONVERT(Nvarchar(255),@intMin+0.5) '类型'
+ from  CollectionMaster_Data t 
+ where Convert(decimal(18,2),Match_Bgdy)>@intMin and Convert(decimal(18,2),Match_Bgdy)<@intMin+0.5;
+set @intMin=@intMin+0.5
+end
+
+set @intMin=1
+set @intmax=6
+while @intMin<=@intMax
+begin
+ insert into MasterOddsWin_1_5
+ select (case when SUM(t.主场胜)-SUM(t.支出)>0 then SUM(t.主场胜)-SUM(t.支出) else -SUM(t.支出) end) '主胜_盈利',(case when SUM(t.主场平)-SUM(t.支出)>0 then SUM(t.主场平)-SUM(t.支出) else -SUM(t.支出) end) '平_盈利',(case when SUM(t.主场负)-SUM(t.支出)>0 then SUM(t.主场负)-SUM(t.支出) else -SUM(t.支出) end) '主负_盈利',SUM(t.支出) '本金','Match_Bmdy '+CONVERT(nvarchar(255),@intMin)+'--'+CONVERT(Nvarchar(255),@intMin+0.5) '类型'
+ from  CollectionMaster_Data t 
+ where Convert(decimal(18,2),Match_Bmdy)>@intMin and Convert(decimal(18,2),Match_Bmdy)<@intMin+0.5;
+set @intMin=@intMin+0.5
+end
+
+set @intMin=1
+set @intmax=6
+while @intMin<=@intMax
+begin
+ insert into MasterOddsWin_1_5
+ select (case when SUM(t.主场胜)-SUM(t.支出)>0 then SUM(t.主场胜)-SUM(t.支出) else -SUM(t.支出) end) '主胜_盈利',(case when SUM(t.主场平)-SUM(t.支出)>0 then SUM(t.主场平)-SUM(t.支出) else -SUM(t.支出) end) '平_盈利',(case when SUM(t.主场负)-SUM(t.支出)>0 then SUM(t.主场负)-SUM(t.支出) else -SUM(t.支出) end) '主负_盈利',SUM(t.支出) '本金','Match_Bhdy '+CONVERT(nvarchar(255),@intMin)+'--'+CONVERT(Nvarchar(255),@intMin+0.5) '类型'
+ from  CollectionMaster_Data t 
+ where Convert(decimal(18,2),Match_Bhdy)>@intMin and Convert(decimal(18,2),Match_Bhdy)<@intMin+0.5;
+set @intMin=@intMin+0.5
+end
                ";
                 try
                 {
