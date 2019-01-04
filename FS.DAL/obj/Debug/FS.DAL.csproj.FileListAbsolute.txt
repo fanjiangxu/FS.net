@@ -11,15 +11,3 @@ E:\willDeleteProject\FS.net\FS.DAL\obj\Debug\FS.DAL.csproj.CoreCompileInputs.cac
 E:\willDeleteProject\FS.net\FS.DAL\obj\Debug\FS.DAL.csproj.CopyComplete
 E:\willDeleteProject\FS.net\FS.DAL\bin\Debug\Renci.SshNet.dll
 E:\willDeleteProject\FS.net\FS.DAL\bin\Debug\Renci.SshNet.xml
-E:\FS\FS.net\FS.net\FS.DAL\bin\Debug\FS.DAL.dll
-E:\FS\FS.net\FS.net\FS.DAL\bin\Debug\FS.DAL.pdb
-E:\FS\FS.net\FS.net\FS.DAL\obj\Debug\FS.DAL.csproj.CoreCompileInputs.cache
-E:\FS\FS.net\FS.net\FS.DAL\obj\Debug\FS.DAL.dll
-E:\FS\FS.net\FS.net\FS.DAL\obj\Debug\FS.DAL.pdb
-E:\FS\FS.net\FS.net\FS.DAL\bin\Debug\FS.Framework.dll
-E:\FS\FS.net\FS.net\FS.DAL\bin\Debug\Newtonsoft.Json.dll
-E:\FS\FS.net\FS.net\FS.DAL\bin\Debug\Renci.SshNet.dll
-E:\FS\FS.net\FS.net\FS.DAL\bin\Debug\FS.Framework.pdb
-E:\FS\FS.net\FS.net\FS.DAL\bin\Debug\Renci.SshNet.xml
-E:\FS\FS.net\FS.net\FS.DAL\obj\Debug\FS.DAL.csprojAssemblyReference.cache
-E:\FS\FS.net\FS.net\FS.DAL\obj\Debug\FS.DAL.csproj.CopyComplete

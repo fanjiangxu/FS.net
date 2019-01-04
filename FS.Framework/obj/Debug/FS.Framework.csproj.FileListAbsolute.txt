@@ -35,4 +35,3 @@ E:\FS\FS.net\FS.net\FS.Framework\obj\Debug\FS.Framework.csproj.CoreCompileInputs
 E:\FS\FS.net\FS.net\FS.Framework\obj\Debug\FS.Framework.csproj.CopyComplete
 E:\FS\FS.net\FS.net\FS.Framework\obj\Debug\FS.Framework.dll
 E:\FS\FS.net\FS.net\FS.Framework\obj\Debug\FS.Framework.pdb
-E:\FS\FS.net\FS.net\FS.Framework\obj\Debug\FS.Framework.csprojAssemblyReference.cache

@@ -93,6 +93,7 @@ E:\FS\FS.net\FS.net\FS.MVC\bin\System.Web.WebPages.Deployment.dll
 E:\FS\FS.net\FS.net\FS.MVC\bin\System.Web.WebPages.dll
 E:\FS\FS.net\FS.net\FS.MVC\bin\System.Web.WebPages.Razor.dll
 E:\FS\FS.net\FS.net\FS.MVC\bin\WebGrease.dll
+E:\FS\FS.net\FS.net\FS.MVC\bin\Dapper.dll
 E:\FS\FS.net\FS.net\FS.MVC\bin\Renci.SshNet.dll
 E:\FS\FS.net\FS.net\FS.MVC\bin\FS.Common.pdb
 E:\FS\FS.net\FS.net\FS.MVC\bin\FS.Framework.pdb
@@ -129,6 +130,7 @@ E:\FS\FS.net\FS.net\FS.MVC\bin\Microsoft.Owin.Security.OAuth.xml
 E:\FS\FS.net\FS.net\FS.MVC\bin\Microsoft.Owin.Security.Google.xml
 E:\FS\FS.net\FS.net\FS.MVC\bin\Microsoft.Owin.Security.Twitter.xml
 E:\FS\FS.net\FS.net\FS.MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\FS\FS.net\FS.net\FS.MVC\bin\Dapper.xml
 E:\FS\FS.net\FS.net\FS.MVC\bin\Renci.SshNet.xml
 E:\FS\FS.net\FS.net\FS.MVC\bin\zh-Hans\System.Web.Helpers.resources.dll
 E:\FS\FS.net\FS.net\FS.MVC\bin\zh-Hans\System.Web.Mvc.resources.dll
