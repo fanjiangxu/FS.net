@@ -19,6 +19,26 @@ namespace FS.Crawler.Common
         {
             
         }
+        public static void Excute(string sql)
+        {
+            using (IDbConnection connection = new SqlConnection(connString))
+            {
+                connection.Execute(sql);
+            }
+        }
+        /// <summary>
+        /// 获取列表 重载 根据sql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public static List<T> GetList<T>(string sql)
+        {
+            using (IDbConnection connection = new SqlConnection(connString))
+            {
+                return connection.Query<T>(sql).ToList();
+            }
+        }
         /// <summary>
         /// 执行
         /// </summary>

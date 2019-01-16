@@ -31,6 +31,7 @@ E:\FS\FS.net\FS.net\FS.Framework\bin\Debug\zh-Hans\System.Web.Razor.resources.dl
 E:\FS\FS.net\FS.net\FS.Framework\bin\Debug\zh-Hans\System.Web.WebPages.Razor.resources.dll
 E:\FS\FS.net\FS.net\FS.Framework\bin\Debug\zh-Hans\System.Web.WebPages.resources.dll
 E:\FS\FS.net\FS.net\FS.Framework\bin\Debug\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+E:\FS\FS.net\FS.net\FS.Framework\obj\Debug\FS.Framework.csprojAssemblyReference.cache
 E:\FS\FS.net\FS.net\FS.Framework\obj\Debug\FS.Framework.csproj.CoreCompileInputs.cache
 E:\FS\FS.net\FS.net\FS.Framework\obj\Debug\FS.Framework.csproj.CopyComplete
 E:\FS\FS.net\FS.net\FS.Framework\obj\Debug\FS.Framework.dll

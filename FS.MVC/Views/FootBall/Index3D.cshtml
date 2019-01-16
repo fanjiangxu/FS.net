@@ -1,0 +1,347 @@
+﻿
+@{
+    ViewBag.Title = "football";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="main" style="height:1000px;width:1200px;"></div>
+<br />
+<div id="main1" style="height:1000px;width:1200px;"></div>
+<br />
+<div id="main2" style="height:1000px;width:1200px;"></div>
+
+<script type="text/javascript">
+
+    $(function () {
+        var myChart = echarts.init(document.getElementById('main'));
+        var indices = {
+            name: 0,
+            group: 1,
+            id: 16
+        };
+        var schema = [
+            { name: 'name', index: 0 },
+            { name: 'group', index: 1 },
+            { name: 'protein', index: 2 },
+            { name: 'calcium', index: 3 },
+            { name: 'sodium', index: 4 },
+            { name: 'fiber', index: 5 },
+            { name: 'vitaminc', index: 6 }
+        ];
+        var data;
+
+        var fieldIndices = schema.reduce(function (obj, item) {
+            obj[item.name] = item.index;
+            return obj;
+        }, {});
+
+        var groupCategories = [];
+        var groupColors = [];
+        var data;
+        var fieldNames = schema.map(function (item) {
+            return item.name;
+        });
+        fieldNames = fieldNames.slice(2, fieldNames.length - 2);
+
+        function getMaxOnExtent(data) {
+            var colorMax = -Infinity;
+            var symbolSizeMax = -Infinity;
+            for (var i = 0; i < data.length; i++) {
+                var item = data[i];
+                var colorVal = item[fieldIndices[config.color]];
+                var symbolSizeVal = item[fieldIndices[config.symbolSize]];
+                colorMax = Math.max(colorVal, colorMax);
+                symbolSizeMax = Math.max(symbolSizeVal, symbolSizeMax);
+            }
+            return {
+                color: colorMax,
+                symbolSize: symbolSizeMax
+            };
+        }
+
+        var config = app.config = {
+            xAxis3D: 'protein',
+            yAxis3D: 'fiber',
+            zAxis3D: 'sodium',
+            color: 'fiber',
+            symbolSize: 'vitaminc',
+
+            onChange: function () {
+                var max = getMaxOnExtent(data);
+                if (data) {
+                    myChart.setOption({
+                        visualMap: [{
+                            max: max.color / 2
+                        }, {
+                            max: max.symbolSize / 2
+                        }],
+                        xAxis3D: {
+                            name: config.xAxis3D
+                        },
+                        yAxis3D: {
+                            name: config.yAxis3D
+                        },
+                        zAxis3D: {
+                            name: config.zAxis3D
+                        },
+                        series: {
+                            dimensions: [
+                                config.xAxis3D,
+                                config.yAxis3D,
+                                config.yAxis3D,
+                                config.color,
+                                config.symbolSiz
+                            ],
+                            data: data.map(function (item, idx) {
+                                return [
+                                    item[fieldIndices[config.xAxis3D]],
+                                    item[fieldIndices[config.yAxis3D]],
+                                    item[fieldIndices[config.zAxis3D]],
+                                    item[fieldIndices[config.color]],
+                                    item[fieldIndices[config.symbolSize]],
+                                    idx
+                                ];
+                            })
+                        }
+                    });
+                }
+            }
+        };
+        app.configParameters = {};
+        ['xAxis3D', 'yAxis3D', 'zAxis3D', 'color', 'symbolSize'].forEach(function (fieldName) {
+            app.configParameters[fieldName] = {
+                options: fieldNames
+            };
+        });
+
+        $.getJSON('/FootBall/GetJsonResult3D', function (_data) {
+            data = _data;
+
+            var max = getMaxOnExtent(data);
+            myChart.setOption({
+                tooltip: {},
+                visualMap: [{
+                    top: 10,
+                    calculable: true,
+                    dimension: 3,
+                    max: max.color / 2,
+                    inRange: {
+                        color: ['#1710c0', '#0b9df0', '#00fea8', '#00ff0d', '#f5f811', '#f09a09', '#fe0300']
+                    },
+                    textStyle: {
+                        color: '#fff'
+                    }
+                }, {
+                    bottom: 10,
+                    calculable: true,
+                    dimension: 4,
+                    max: max.symbolSize / 2,
+                    inRange: {
+                        symbolSize: [10, 40]
+                    },
+                    textStyle: {
+                        color: '#fff'
+                    }
+                }],
+                xAxis3D: {
+                    name: config.xAxis3D,
+                    type: 'value'
+                },
+                yAxis3D: {
+                    name: config.yAxis3D,
+                    type: 'value'
+                },
+                zAxis3D: {
+                    name: config.zAxis3D,
+                    type: 'value'
+                },
+                grid3D: {
+                    axisLine: {
+                        lineStyle: {
+                            color: '#fff'
+                        }
+                    },
+                    axisPointer: {
+                        lineStyle: {
+                            color: '#ffbd67'
+                        }
+                    },
+                    viewControl: {
+                        // autoRotate: true
+                        // projection: 'orthographic'
+                    }
+                },
+                series: [{
+                    type: 'scatter3D',
+                    dimensions: [
+                        config.xAxis3D,
+                        config.yAxis3D,
+                        config.yAxis3D,
+                        config.color,
+                        config.symbolSiz
+                    ],
+                    data: data.map(function (item, idx) {
+                        return [
+                            item[fieldIndices[config.xAxis3D]],
+                            item[fieldIndices[config.yAxis3D]],
+                            item[fieldIndices[config.zAxis3D]],
+                            item[fieldIndices[config.color]],
+                            item[fieldIndices[config.symbolSize]],
+                            idx
+                        ];
+                    }),
+                    symbolSize: 12,
+                    // symbol: 'triangle',
+                    itemStyle: {
+                        borderWidth: 1,
+                        borderColor: 'rgba(255,255,255,0.8)'
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            color: '#fff'
+                        }
+                    }
+                }]
+            });
+        });
+
+
+
+
+
+
+
+        //$.getJSON('/FootBall/GetJsonResult', function (data) {
+        //    var option = {
+        //        title: {
+        //            text: '',
+        //            left: 'center',
+        //            top: 0
+        //        },
+        //        visualMap: {
+        //            min: 1,
+        //            max: 12,
+        //            dimension: 1,
+        //            orient: 'vertical',
+        //            right: 10,
+        //            top: 'center',
+        //            text: ['最高', '最低'],
+        //            calculable: true,
+        //            inRange: {
+        //                color: ['#f2c31a', '#24b7f2']
+        //            }
+        //        },
+        //        tooltip: {
+        //            trigger: 'item',
+        //            axisPointer: {
+        //                type: 'cross'
+        //            }
+        //        },
+        //        xAxis: [{
+        //            type: 'value'
+        //        }],
+        //        yAxis: [{
+        //            type: 'value'
+        //        }],
+        //        series: [{
+        //            name: '赔率',
+        //            type: 'scatter',
+        //            symbolSize: 5,
+        //            // itemStyle: {
+        //            //     normal: {
+        //            //         borderWidth: 0.2,
+        //            //         borderColor: '#fff'
+        //            //     }
+        //            // },
+        //            data: data
+        //        }]
+        //    };
+        //    myChart.setOption(option);
+        //});
+
+        //var myChart1 = echarts.init(document.getElementById('main1'));
+        //$.getJSON('/FootBall/GetJsonResult1', function (data) {
+        //    var option = {
+        //        title: {
+        //            text: '',
+        //            left: 'center',
+        //            top: 0
+        //        },
+        //        visualMap: {
+        //            min: 1,
+        //            max: 12,
+        //            dimension: 1,
+        //            orient: 'vertical',
+        //            right: 10,
+        //            top: 'center',
+        //            text: ['最高', '最低'],
+        //            calculable: true,
+        //            inRange: {
+        //                color: ['#f2c31a', '#24b7f2']
+        //            }
+        //        },
+        //        tooltip: {
+        //            trigger: 'item',
+        //            axisPointer: {
+        //                type: 'cross'
+        //            }
+        //        },
+        //        xAxis: [{
+        //            type: 'value'
+        //        }],
+        //        yAxis: [{
+        //            type: 'value'
+        //        }],
+        //        series: [{
+        //            name: '赔率',
+        //            type: 'scatter',
+        //            symbolSize: 5,
+        //            data: data
+        //        }]
+        //    };
+        //    myChart1.setOption(option);
+        //});
+
+        //var myChart2 = echarts.init(document.getElementById('main2'));
+        //$.getJSON('/FootBall/GetJsonResult2', function (data) {
+        //    var option = {
+        //        title: {
+        //            text: '',
+        //            left: 'center',
+        //            top: 0
+        //        },
+        //        visualMap: {
+        //            min: 1,
+        //            max: 12,
+        //            dimension: 1,
+        //            orient: 'vertical',
+        //            right: 10,
+        //            top: 'center',
+        //            text: ['最高', '最低'],
+        //            calculable: true,
+        //            inRange: {
+        //                color: ['#f2c31a', '#24b7f2']
+        //            }
+        //        },
+        //        tooltip: {
+        //            trigger: 'item',
+        //            axisPointer: {
+        //                type: 'cross'
+        //            }
+        //        },
+        //        xAxis: [{
+        //            type: 'value'
+        //        }],
+        //        yAxis: [{
+        //            type: 'value'
+        //        }],
+        //        series: [{
+        //            name: '赔率',
+        //            type: 'scatter',
+        //            symbolSize: 5,
+        //            data: data
+        //        }]
+        //    };
+        //    myChart2.setOption(option);
+        //});
+    });
+</script>

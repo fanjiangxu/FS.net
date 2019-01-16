@@ -70,6 +70,8 @@ namespace FS.Crawler
                 {
                     JsonStringFootballMorning json = Serializer.Deserialize<JsonStringFootballMorning>(e.PageSource);
                     DapperHelper.InsertEntity<FootballMorning>(json.DB);
+                    Match_Recommend(json.DB);
+
                 }
                 if (url.Contains("FootballToday"))
                 {
@@ -93,11 +95,24 @@ namespace FS.Crawler
                 postUriData.Uri = new Uri("https://7345v.com/index.php/sports/Match/FootballMorning/?t=" + t);
                 postUriData.PostString = "&p=" + i + "&oddpk=H&leg=";
                 postUriDataList.Add(postUriData);
+                postUriData.PostString = "&p=" + i + "&oddpk=M&leg=";
+                postUriDataList.Add(postUriData);
+                postUriData.PostString = "&p=" + i + "&oddpk=I&leg=";
+                postUriDataList.Add(postUriData);
+                postUriData.PostString = "&p=" + i + "&oddpk=E&leg=";
+                postUriDataList.Add(postUriData);
+
 
                 PostUriData postUriData1 = new PostUriData();
                 postUriData1.Uri = new Uri("https://7345v.com/index.php/sports/Match/FootballToday/?t=" + t);
-                postUriData1.PostString = "&p=" + i + "&oddpk=H&leg=";
-                postUriDataList.Add(postUriData1);
+                postUriData.PostString = "&p=" + i + "&oddpk=H&leg=";
+                postUriDataList.Add(postUriData);
+                postUriData.PostString = "&p=" + i + "&oddpk=M&leg=";
+                postUriDataList.Add(postUriData);
+                postUriData.PostString = "&p=" + i + "&oddpk=I&leg=";
+                postUriDataList.Add(postUriData);
+                postUriData.PostString = "&p=" + i + "&oddpk=E&leg=";
+                postUriDataList.Add(postUriData);
 
                 PostUriData postUriData2 = new PostUriData();
                 postUriData2.Uri = new Uri("https://7345v.com/index.php/sports/Match/FBRresults/?t=" + t);
@@ -108,8 +123,25 @@ namespace FS.Crawler
             {
                 footballMorningCrawler.StartPost(postUriData.Uri, postUriData.PostString);   //Post请求
             });
+        }
 
-        
+        /// <summary>
+        /// 筛选符合条件的
+        /// </summary>
+        /// <param name="list"></param>
+        public static void Match_Recommend(List<FootballMorning> list)
+        {
+            var sql = @"select * from Match_Results";
+            var list1 = DapperHelper.GetList<FootBallResult>(sql);
+            foreach (var item in list)
+            {
+                var entity=list1.Where(m=>(m.Match_Bgdy==Convert.ToDecimal(item.Match_Bgdy)&& m.Match_Bmdy ==Convert.ToDecimal(item.Match_Bmdy))).FirstOrDefault();
+                if (entity != null)
+                {
+                    string sql2 = string.Format("insert into Match_Recommend values('{0}','{1}','{2}','{3}','{4}',getdate(),{5})", item.Match_Master,item.Match_Guest,item.Match_Date.Replace("<br/>", " ").Replace("<br><font color=red>滾球</font>", ""), item.Match_Bmdy, item.Match_Bgdy,entity.Match_ResultType);
+                    DapperHelper.Excute(sql2);
+                }
+            }
         }
         /// <summary>
         ///清洗数据
@@ -325,6 +357,20 @@ begin
  where Convert(decimal(18,2),Match_Bhdy)>@intMin and Convert(decimal(18,2),Match_Bhdy)<@intMin+0.5;
 set @intMin=@intMin+0.5
 end
+----------------------------------------------------------------------------------------------   汇总比赛结果   赢的 没有不重复的 赔率记录
+truncate table Match_Results
+insert into Match_Results
+select d1.Match_Bmdy,d1.Match_Bgdy,(Case when 类型='胜' then 1 when 类型='负' then -1 else 0 end) Match_ResultType
+from CollectionMaster_Data d1
+inner join
+(
+select Match_Bmdy,Match_Bgdy
+  from CollectionMaster_Data 
+group by Match_Bmdy,Match_Bgdy,类型 having(COUNT(Match_Bmdy))=1
+)
+d2
+on d1.Match_Bmdy=d2.Match_Bmdy and d1.Match_Bgdy=d2.Match_Bgdy
+
                ";
                 try
                 {

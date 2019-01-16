@@ -14,5 +14,6 @@ namespace FS.MVC.Models
         /// 1 主场胜 0 平 -1 负
         /// </summary>
         public int Match_ResultType { get; set; }
+        public string TypeName { get; set;}
     }
 }

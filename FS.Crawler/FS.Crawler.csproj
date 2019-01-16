@@ -76,6 +76,7 @@
     <Compile Include="Events\OnStartEventArgs.cs" />
     <Compile Include="ICrawler.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\FootBallResult.cs" />
     <Compile Include="Models\Football\JsonString.cs" />
     <Compile Include="Models\Football\FBRresults.cs" />
     <Compile Include="Models\Football\FootballMorning.cs" />
