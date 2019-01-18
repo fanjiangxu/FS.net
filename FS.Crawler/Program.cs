@@ -42,7 +42,17 @@ namespace FS.Crawler
 
         public static void SendReusltEmail()
         {
-            EmailHelper.SendEmail();
+            var sql = @"select Match_Master,Match_Guest,Match_Date,Match_Bmdy,Match_Bgdy,MAX(AddDate) 'AddDate',Match_ResultType from dbo.Match_Recommend where AddDate>GETDATE()-1 group by Match_Master,Match_Guest,Match_Date,Match_Bmdy,Match_Bgdy,Match_ResultType";
+            var list = DapperHelper.GetList<Match_Recommend>(sql);
+            StringBuilder sb = new StringBuilder();
+            if (list != null && list.Count > 0)
+            {
+                for (var i = 0; i < list.Count; i++)
+                {
+                    sb.AppendLine(string.Format("{0}---{1}---{2}---{3}---result:{4}---{5}", list[i].Match_Master, list[i].Match_Guest,list[i].Match_Bmdy, list[i].Match_Bgdy, list[i].Match_ResultType, list[i].Match_Date));
+                }
+            }
+            EmailHelper.SendEmail("good morning","fanjiangxu@icloud.com", sb.ToString());
         }
 
         /// 抓取早盘数据

@@ -29,4 +29,3 @@ E:\FS\FS.net\FS.net\FS.Crawler\obj\Debug\FS.Crawler.csproj.CoreCompileInputs.cac
 E:\FS\FS.net\FS.net\FS.Crawler\obj\Debug\FS.Crawler.csproj.CopyComplete
 E:\FS\FS.net\FS.net\FS.Crawler\obj\Debug\FS.Crawler.exe
 E:\FS\FS.net\FS.net\FS.Crawler\obj\Debug\FS.Crawler.pdb
-E:\FS\FS.net\FS.net\FS.Crawler\obj\Debug\FS.Crawler.csprojAssemblyReference.cache
