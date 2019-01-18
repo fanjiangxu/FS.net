@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\DapperHelper.cs" />
+    <Compile Include="Common\EmailHelper.cs" />
     <Compile Include="Events\OnCompletedEventArgs.cs" />
     <Compile Include="Events\OnErrorEventArgs.cs" />
     <Compile Include="Events\OnStartEventArgs.cs" />

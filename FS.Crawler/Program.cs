@@ -32,9 +32,17 @@ namespace FS.Crawler
         {
             FootballMorningCrawler();
             Thread.Sleep(60000);
+            //清洗数据
             ClearData();
+            //Email发送结果
+            SendReusltEmail();
             Console.WriteLine("执行完成！");
             return;
+        }
+
+        public static void SendReusltEmail()
+        {
+            EmailHelper.SendEmail();
         }
 
         /// 抓取早盘数据

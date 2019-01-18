@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Base\BaseController.cs" />
     <Compile Include="Helper\DapperHelper.cs" />
+    <Compile Include="Helper\EmailHelper.cs" />
     <Compile Include="HtmlHelperExtensions.cs" />
     <Compile Include="LogSingleton.cs" />
     <Compile Include="Filter\Log4NetExceptionFilter.cs" />
